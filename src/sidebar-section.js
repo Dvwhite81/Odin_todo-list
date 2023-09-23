@@ -49,7 +49,7 @@ const addToList = (item) => {
 };
 */
 
-export const Sidebar = () => {
+const Sidebar = () => {
   const section = buildSidebar();
   const logo = buildSideLogo();
   const title = buildSideTitle();
@@ -58,3 +58,5 @@ export const Sidebar = () => {
 
   return section;
 };
+
+export { Sidebar };

@@ -1,15 +1,10 @@
 import { Sidebar } from "./sidebar-section";
 import { Main } from "./main-section";
 
-export const BuildPage = (() => {
-    const container = document.getElementById('container');
+const BuildPage = () => {
+  const container = document.getElementById('container');
+  container.append(Sidebar());
+  container.append(Main());
+};
 
-    const sidebar = Sidebar();
-
-    const main = Main();
-
-    container.append(sidebar);
-    container.append(main);
-
-    return container;
-})();
+export { BuildPage };
