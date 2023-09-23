@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    width: 100vw;
+}
+
+#container {
+    height: 100%;
+    width: 100%;
+}
+
+#sidebar {
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 20%;
+    z-index: 1;
+}
+
+#side-title {
+    color: black;
+}
+
+#side-logo {
+    height: auto;
+    width: 80%;
+}
+
+#side-list {
+    padding: 1rem;
+}
+
+.side-list-item {
+    list-style: none;
+}
+
+.side-link {
+    color: blue;
+    cursor: pointer;
+    display: block;
+    font-size: 3vw;
+    text-decoration: none;
+}
+
+#main {
+    background-color: lightblue;
+    height: 100%;
+    margin-left: 20%;
+    width: 80%;
+}
