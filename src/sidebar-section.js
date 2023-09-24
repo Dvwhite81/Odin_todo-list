@@ -1,3 +1,5 @@
+
+
 const buildSidebar = () => {
   const sidebar = document.createElement("div");
   sidebar.id = "sidebar";

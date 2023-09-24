@@ -1,11 +1,17 @@
-const ToDoList = (title, description, dueDate, priority) => {
-    let isComplete = false;
+import { BuildModal, setModalActive } from "./modal-section";
 
-    return { title, description, dueDate, priority, isComplete };
+const ToDoList = (id, title, description, dueDate, priority, isComplete = false, projectId) => {
+
+    return { id, title, description, dueDate, priority, isComplete, projectId };
 }
 
 const toggleComplete = (isComplete) => {
     return !isComplete;
 }
 
-export { ToDoList, toggleComplete }
+const makeNewList = () => {
+    BuildModal('list');
+    setModalActive('list');
+}
+
+export { ToDoList, toggleComplete, makeNewList }

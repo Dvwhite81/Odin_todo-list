@@ -1,3 +1,5 @@
+import { makeNewList } from "./todo-list";
+
 const buildMain = () => {
   const main = document.createElement("div");
   main.id = "main";
@@ -17,6 +19,7 @@ const newListBtn = () => {
   const btn = document.createElement("button");
   btn.id = "new-list-btn";
   btn.textContent = "New List";
+  btn.addEventListener('click', makeNewList);
 
   return btn;
 };

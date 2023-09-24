@@ -1,7 +1,24 @@
-const Project = (name) => {
-    let toDos = [];
+import { allProjects } from "./storage";
 
-    return { name, toDos };
+const Project = (id, name, lists = []) => {
+
+    return { id, name, lists };
 }
 
-export { Project }
+const getProjectById = (id) => {
+    return allProjects.find(project => project.id === id);
+}
+
+const getProjectLists = (id) => {
+    const project = getProjectById(id);
+    return project.lists;
+}
+
+const addListToProject = (list) => {
+    const element = document.querySelector('.project-section');
+    const id = element.getAttribute('project-id');
+    const project = getProjectById(id);
+    project.lists.push(list);
+}
+
+export { Project, getProjectById, getProjectLists, addListToProject };
