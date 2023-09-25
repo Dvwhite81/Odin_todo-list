@@ -1,3 +1,5 @@
-import { BuildPage } from "./build-page";
+import { buildPage } from "./html-elements/build-page";
 
-BuildPage();
+buildPage();
+
+const newListBtn = document.getElementById('new-list-btn')
