@@ -7,7 +7,6 @@ const Project = (id, name, lists = []) => {
 
 const allProjects = [];
 const defaultProject = Project(0, 'default project');
-console.log('project.js default project')
 allProjects.push(defaultProject);
 
 
@@ -19,24 +18,26 @@ const getAllProjects = () => {
 }
 
 const getProjectById = (id) => {
-    console.log('getprojectbyid id:', id)
-    console.log('getprojectbyid allprojects', allProjects)
-    console.log('getprojectbyid find project', allProjects.find(project => project.id === id))
     return allProjects.find(project => project.id === id);
 }
 
 const getProjectLists = (id) => {
-    console.log('getprojectlists')
     const project = getProjectById(id);
     return project.lists;
 }
 
 const addListToProject = (info) => {
-    console.log('addlisttoproject')
-    const element = document.querySelector('.project-section');
-    const id = element.getAttribute('project-id');
-    const project = getProjectById(id);
-    project.lists.push(list);
+    console.log('addlisttoproject info:', info)
+    const [title, description, dueDate, priority, projectId] = info;
+    const project = getProjectById(projectId);
+    console.log('project: ', project);
+    const projectLists = getProjectLists(projectId);
+    console.log('projectLists: ', projectLists);
+    const newListId = projectLists.length;
+    console.log('length', newListId);
+    const newList = ToDoList(newListId, title, description, dueDate, priority, projectId, false);
+
+    projectLists.push(newList);
 }
 
 export { Project, getProjectById, getProjectLists, addListToProject, getAllProjects };

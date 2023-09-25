@@ -1,18 +1,24 @@
-import { getAllProjects, getProjectById } from "../project";
+import { getAllProjects, getProjectById, getProjectLists } from "../project";
+import { buildElement } from "./build-page";
+import { buildList } from "./lists-section";
 
 const buildProject = (id) => {
-    const section = document.createElement('div');
-    section.classList.add('project-section');
+    const section = buildElement('div', {classList: 'project-section'});
+    //
+    //
+    // Will this work as an arg to buildElement?
     section.setAttribute('project-id', id);
 
     const project = getProjectById(id);
-    const h3 = document.createElement('h3');
-    h3.textContent = project.name;
+    const h3 = buildElement('h3', {textContent: project.name});
+    section.append(h3);
 
-    const p = document.createElement('p');
-    p.textContent = project.lists;
+    const lists = getProjectLists(id);
 
-    section.append(h3, p);
+    lists.forEach(list => {
+        const listSection = buildList(list);
+        section.append(listSection);
+    });
 
     return section;
 }
@@ -26,7 +32,6 @@ const buildAllProjects = () => {
 }
 
 const onlyDisplayOneProject = (id) => {
-    console.log('onlyDisplayOneProject id:', id);
     const container = document.getElementById('projects-container');
     container.innerHTML = "";
     container.append(buildProject(id));

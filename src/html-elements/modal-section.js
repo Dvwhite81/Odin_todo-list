@@ -3,13 +3,11 @@ import { getAllProjects } from "../project";
 import { buildElement } from "./build-page";
 
 const setModalActive = (type) => {
-    console.log('setmodalactive')
     const modal = document.getElementById(`${type}-modal`);
     modal.style.display = 'block';
 }
 
 const buildModal = (type) => {
-    console.log('buildmodal')
     const checkForModal = document.getElementById(`${type}-modal`);
     if (checkForModal) {
         setModalActive(type);
@@ -47,8 +45,7 @@ const buildModal = (type) => {
 
     const allProjects = getAllProjects();
     allProjects.forEach((project) => {
-        console.log('select - project:', project)
-        const option = buildElement('option', {textContent: project.name});
+        const option = buildElement('option', {textContent: project.name, value: project.id});
         input7.append(option);
     });
 
