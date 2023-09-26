@@ -16,7 +16,7 @@ const ToDoList = (
 
 const createNewList = (info) => {
   const [title, description, dueDate, priority, projectId] = info;
-  const allLists = getStorage('allLists');
+  const allLists = getStorage("allLists");
   const ids = allLists.map((list) => list.id);
   let newListId = 0;
   while (ids.includes(newListId)) {
@@ -72,20 +72,20 @@ const getAllLists = () => {
 };
 
 const getListId = (event) => {
-  console.log('getlistid event:', event)
+  console.log("getlistid event:", event);
   const grandParent = event.target.parentElement.parentElement;
-  const listId = grandParent.getAttribute('list-id');
-  const info = [listId, grandParent]
+  const listId = grandParent.getAttribute("list-id");
+  const info = [listId, grandParent];
 
   return info;
-}
+};
 
 const deleteList = (listId) => {
-  let allLists = getStorage('allLists');
+  let allLists = getStorage("allLists");
   allLists = allLists.filter((list) => Number(list.id) !== Number(listId));
-  localStorage.removeItem('allLists');
-  allLists.forEach((list) => setStorage('allLists', list));
-}
+  localStorage.removeItem("allLists");
+  allLists.forEach((list) => setStorage("allLists", list));
+};
 
 export {
   ToDoList,
@@ -95,5 +95,5 @@ export {
   getAllLists,
   createNewList,
   getListId,
-  deleteList
+  deleteList,
 };

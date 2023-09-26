@@ -1,4 +1,9 @@
-import { getAllProjects, getProjectById, getProjectLists, deleteProject } from "../project";
+import {
+  getAllProjects,
+  getProjectById,
+  getProjectLists,
+  deleteProject,
+} from "../project";
 import { buildElement } from "./build-page";
 import { buildList } from "./lists-section";
 
@@ -8,7 +13,10 @@ const buildProject = (id) => {
 
   const project = getProjectById(id);
   const h3 = buildElement("h3", { textContent: project.projectName });
-  const deleteBtn = buildElement("button", { id: "delete-project", textContent: "␡" });
+  const deleteBtn = buildElement("button", {
+    id: "delete-project",
+    textContent: "␡",
+  });
   deleteBtn.setAttribute("project-id", id);
   deleteBtn.addEventListener("click", deleteProject);
   h3.append(deleteBtn);

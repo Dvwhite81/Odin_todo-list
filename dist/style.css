@@ -150,3 +150,7 @@ form h3 {
 .list-duedate {
   align-self: flex-end;
 }
+
+#delete-project {
+  margin-left: 5px;
+}

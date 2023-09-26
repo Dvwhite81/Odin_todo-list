@@ -82,7 +82,7 @@ const addToSidebarList = (id, name) => {
 const removeFromSidebarList = (id) => {
   const li = document.querySelector(`[project-id="${id}"]`);
   li.remove();
-}
+};
 
 const Sidebar = () => {
   const section = buildSidebar();

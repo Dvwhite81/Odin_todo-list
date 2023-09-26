@@ -10,12 +10,18 @@ const buildList = (list) => {
   section.style.backgroundColor = colors[1];
 
   const listBtnsDiv = buildElement("div", { id: "list-btns-div" });
-  const detailsBtn = buildElement("button", { id: "show-details", textContent: "ℹ️" });
+  const detailsBtn = buildElement("button", {
+    id: "show-details",
+    textContent: "ℹ️",
+  });
   detailsBtn.addEventListener("click", showDetails);
-  const deleteBtn = buildElement("button", { id: "delete-list", textContent: "␡" });
+  const deleteBtn = buildElement("button", {
+    id: "delete-list",
+    textContent: "␡",
+  });
   deleteBtn.addEventListener("click", (event) => {
     const info = getListId(event);
-    console.log('info:', info)
+    console.log("info:", info);
     const listId = info[0];
     const grandParent = info[1];
     deleteList(listId);
@@ -38,12 +44,22 @@ const buildList = (list) => {
     end: parseISO(list.dueDate),
   });
 
-  const units = ['years', 'months', 'weeks', 'days', 'hours', 'minutes', 'seconds'];
-  const nonzero = Object.entries(timeLeft).filter(([_, value]) => value || 0 > 0).map(([unit, _]) => unit);
+  const units = [
+    "years",
+    "months",
+    "weeks",
+    "days",
+    "hours",
+    "minutes",
+    "seconds",
+  ];
+  const nonzero = Object.entries(timeLeft)
+    .filter(([_, value]) => value || 0 > 0)
+    .map(([unit, _]) => unit);
   const dueDate = buildElement("p", {
     classList: "list-duedate",
     textContent: `Time left: ${formatDuration(timeLeft, {
-      format: units.filter(i => new Set(nonzero).has(i)).slice(0, 3),
+      format: units.filter((i) => new Set(nonzero).has(i)).slice(0, 3),
       delimiter: ", ",
     })}`,
   });
@@ -60,7 +76,7 @@ const showDetails = (event) => {
   const detailsBtn = event.target;
   detailsBtn.removeEventListener("click", showDetails);
   detailsBtn.addEventListener("click", hideDetails);
-}
+};
 
 const hideDetails = (event) => {
   const parent = event.target.parentElement.parentElement;
@@ -70,29 +86,29 @@ const hideDetails = (event) => {
   const detailsBtn = event.target;
   detailsBtn.removeEventListener("click", hideDetails);
   detailsBtn.addEventListener("click", showDetails);
-}
+};
 
 const setPriorityColor = (priority) => {
   let color1, color2;
   switch (priority) {
-    case 'low priority':
-      color1 = 'green';
-      color2 = 'lightgreen'
+    case "low priority":
+      color1 = "green";
+      color2 = "lightgreen";
       break;
-    case 'medium priority':
-      color1 = 'yellow';
-      color2 = 'lightyellow';
+    case "medium priority":
+      color1 = "yellow";
+      color2 = "lightyellow";
       break;
-    case 'high priority':
-      color1 = 'red';
-      color2 = 'indianred';
+    case "high priority":
+      color1 = "red";
+      color2 = "indianred";
       break;
   }
   return [color1, color2];
-}
+};
 
-const removeListElement = (grandParent) =>{
+const removeListElement = (grandParent) => {
   grandParent.remove();
-}
+};
 
 export { buildList, removeListElement };

@@ -1,9 +1,5 @@
 import { getNewListInfo } from "../todo-list";
-import {
-  getAllProjects,
-  createNewProject,
-  getNewProjectInfo,
-} from "../project";
+import { getAllProjects, getNewProjectInfo } from "../project";
 import { buildElement } from "./build-page";
 
 const setModalActive = (type) => {
