@@ -131,4 +131,18 @@ form h3 {
   gap: 1rem;
   margin: 1rem;
   padding: 1rem;
+  position: relative;
+}
+
+#list-btns-div {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.list-section button {
+  cursor: pointer;
+  height: 1.5rem;
+  margin-right: 5px;
+  width: 1.5rem;
 }
