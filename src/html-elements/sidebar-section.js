@@ -50,6 +50,8 @@ const buildSideList = () => {
   allProjects.forEach((project) => {
     if (project.projectName) {
       const li = buildElement("li", { classList: "side-list-item" });
+      li.setAttribute("project-id", project.projectId);
+
       const a = buildElement("a", {
         classList: "side-link",
         textContent: project.projectName,
@@ -70,11 +72,17 @@ const buildSideList = () => {
 const addToSidebarList = (id, name) => {
   const list = document.getElementById("side-list");
   const li = buildElement("li", { classList: "side-list-item" });
+  li.setAttribute("project-id", id);
   const a = buildElement("a", { classList: "side-link", textContent: name });
   a.addEventListener("click", () => onlyDisplayOneProject(id));
   li.append(a);
   list.append(li);
 };
+
+const removeFromSidebarList = (id) => {
+  const li = document.querySelector(`[project-id="${id}"]`);
+  li.remove();
+}
 
 const Sidebar = () => {
   const section = buildSidebar();
@@ -86,4 +94,4 @@ const Sidebar = () => {
   return section;
 };
 
-export { Sidebar, addToSidebarList };
+export { Sidebar, addToSidebarList, removeFromSidebarList };

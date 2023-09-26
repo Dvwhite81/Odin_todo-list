@@ -146,3 +146,7 @@ form h3 {
   margin-right: 5px;
   width: 1.5rem;
 }
+
+.list-duedate {
+  align-self: flex-end;
+}

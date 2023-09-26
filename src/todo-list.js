@@ -1,5 +1,4 @@
 import { buildModal, setModalActive } from "./html-elements/modal-section";
-import { Project, getProjectById, getProjectLists } from "./project";
 import { onlyDisplayOneProject } from "./html-elements/project-section";
 import { setStorage, getStorage } from "./storage";
 
@@ -17,12 +16,11 @@ const ToDoList = (
 
 const createNewList = (info) => {
   const [title, description, dueDate, priority, projectId] = info;
-  const projectLists = getProjectLists(projectId);
-  let newListId;
-  if (projectLists) {
-    newListId = projectLists.length;
-  } else {
-    newListId = 0;
+  const allLists = getStorage('allLists');
+  const ids = allLists.map((list) => list.id);
+  let newListId = 0;
+  while (ids.includes(newListId)) {
+    newListId++;
   }
   const newList = ToDoList(
     newListId,
@@ -73,6 +71,22 @@ const getAllLists = () => {
   return storedLists;
 };
 
+const getListId = (event) => {
+  console.log('getlistid event:', event)
+  const grandParent = event.target.parentElement.parentElement;
+  const listId = grandParent.getAttribute('list-id');
+  const info = [listId, grandParent]
+
+  return info;
+}
+
+const deleteList = (listId) => {
+  let allLists = getStorage('allLists');
+  allLists = allLists.filter((list) => Number(list.id) !== Number(listId));
+  localStorage.removeItem('allLists');
+  allLists.forEach((list) => setStorage('allLists', list));
+}
+
 export {
   ToDoList,
   toggleComplete,
@@ -80,4 +94,6 @@ export {
   getNewListInfo,
   getAllLists,
   createNewList,
+  getListId,
+  deleteList
 };

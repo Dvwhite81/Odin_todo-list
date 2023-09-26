@@ -1,5 +1,6 @@
 import { intervalToDuration, parseISO, formatDuration } from "date-fns";
 import { buildElement } from "./build-page";
+import { getListId, deleteList } from "../todo-list";
 
 const buildList = (list) => {
   const section = buildElement("div", { classList: "list-section" });
@@ -12,15 +13,23 @@ const buildList = (list) => {
   const detailsBtn = buildElement("button", { id: "show-details", textContent: "ℹ️" });
   detailsBtn.addEventListener("click", showDetails);
   const deleteBtn = buildElement("button", { id: "delete-list", textContent: "␡" });
+  deleteBtn.addEventListener("click", (event) => {
+    const info = getListId(event);
+    console.log('info:', info)
+    const listId = info[0];
+    const grandParent = info[1];
+    deleteList(listId);
+    removeListElement(grandParent);
+  });
   listBtnsDiv.append(detailsBtn, deleteBtn);
 
   const title = buildElement("h3", {
     classList: "list-title",
-    textContent: `Task: ${list.title}`,
+    textContent: `${list.title}`,
   });
   const description = buildElement("p", {
     classList: "list-description",
-    textContent: `Details: ${list.description}`,
+    textContent: `${list.description}`,
   });
   description.style.display = "none";
 
@@ -29,9 +38,12 @@ const buildList = (list) => {
     end: parseISO(list.dueDate),
   });
 
+  const units = ['years', 'months', 'weeks', 'days', 'hours', 'minutes', 'seconds'];
+  const nonzero = Object.entries(timeLeft).filter(([_, value]) => value || 0 > 0).map(([unit, _]) => unit);
   const dueDate = buildElement("p", {
     classList: "list-duedate",
     textContent: `Time left: ${formatDuration(timeLeft, {
+      format: units.filter(i => new Set(nonzero).has(i)).slice(0, 3),
       delimiter: ", ",
     })}`,
   });
@@ -79,4 +91,8 @@ const setPriorityColor = (priority) => {
   return [color1, color2];
 }
 
-export { buildList };
+const removeListElement = (grandParent) =>{
+  grandParent.remove();
+}
+
+export { buildList, removeListElement };
