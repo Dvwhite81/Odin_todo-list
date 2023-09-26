@@ -10,15 +10,18 @@ const buildProject = (id) => {
     section.setAttribute('project-id', id);
 
     const project = getProjectById(id);
-    const h3 = buildElement('h3', {textContent: project.name});
+    console.log('buildProject project:', project, 'id type: ', typeof(id))
+    const h3 = buildElement('h3', {textContent: project.projectName});
     section.append(h3);
 
     const lists = getProjectLists(id);
 
-    lists.forEach(list => {
-        const listSection = buildList(list);
-        section.append(listSection);
-    });
+    if (lists) {
+        lists.forEach(list => {
+            const listSection = buildList(list);
+            section.append(listSection);
+        });
+    }
 
     return section;
 }
@@ -26,8 +29,9 @@ const buildProject = (id) => {
 const buildAllProjects = () => {
     const container = document.getElementById('projects-container');
     const allProjects = getAllProjects();
+    console.log('buildAllProjects allProjects:', allProjects)
     allProjects.forEach((project) => {
-        container.append(buildProject(project.id));
+        container.append(buildProject(project.projectId));
     });
 }
 

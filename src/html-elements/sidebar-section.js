@@ -1,4 +1,4 @@
-import { buildElement } from "./build-page";
+import { buildElement, buildPage } from "./build-page";
 import { getAllProjects } from "../project";
 import { onlyDisplayOneProject } from "./project-section";
 
@@ -9,10 +9,20 @@ const buildSidebar = () => {
 };
 
 const buildSideLogo = () => {
+  const a = buildElement("a", {id: "side-logo-link"});
   const logo = buildElement("img", {id: "side-logo", src: "/src/images/todo-logo.png"});
+  logo.addEventListener("mouseover", (event) => event.target.src = "/src/images/todo-logo-hover.png");
+  logo.addEventListener("mouseout", (event) => event.target.src = "/src/images/todo-logo.png");
 
-  return logo;
+  a.append(logo);
+  a.addEventListener('click', buildPage)
+  return a;
 };
+
+const sideLogoHover = () => {
+  const logo = document.getElementById('side-logo');
+  logo.src = "/src/images/todo-logo-hover.png";
+}
 
 const buildSideTitle = () => {
   const sideTitle = buildElement("div", {id: "side-title", textContent: "All Projects"});
@@ -24,25 +34,34 @@ const buildSideList = () => {
   const list = buildElement("ul", {id: "side-list"});
 
   const allProjects = getAllProjects();
+  console.log('buildSideList:',allProjects)
+
   allProjects.forEach((project) => {
-    const li = buildElement("li", {classList: "side-list-item"});
-    const a = buildElement("a", {classList: "side-link", textContent: project.name});
-    a.addEventListener("click", () => onlyDisplayOneProject(project.id));
-    li.append(a);
-    list.append(li);
+    console.log('buildSideList project: ', project)
+    if (project.projectName) {
+      const li = buildElement("li", {classList: "side-list-item"});
+      const a = buildElement("a", {classList: "side-link", textContent: project.projectName});
+      a.addEventListener("click", () => onlyDisplayOneProject(project.projectId));
+      li.append(a);
+      list.append(li);
+    }
+    else {
+      return;
+    }
   });
 
   return list;
 };
 
-/*
-const addToList = (item) => {
-  //
-  //
-  // Fill in later
-  return item;
+const addToSidebarList = (id, name) => {
+  const list = document.getElementById("side-list");
+  const li = buildElement("li", {classList: "side-list-item"});
+  const a = buildElement("a", {classList: "side-link", textContent: name});
+  a.addEventListener("click", () => onlyDisplayOneProject(id));
+  li.append(a);
+  list.append(li);
 };
-*/
+
 
 const Sidebar = () => {
   const section = buildSidebar();
@@ -54,4 +73,4 @@ const Sidebar = () => {
   return section;
 };
 
-export { Sidebar };
+export { Sidebar, addToSidebarList };

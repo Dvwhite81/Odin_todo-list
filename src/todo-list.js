@@ -1,10 +1,30 @@
 import { buildModal, setModalActive } from "./html-elements/modal-section";
-import { Project, addListToProject, getProjectById, getProjectLists } from "./project";
+import { Project, getProjectById, getProjectLists } from "./project";
 import { onlyDisplayOneProject } from "./html-elements/project-section";
+import { setStorage, getStorage } from "./storage";
 
 const ToDoList = (id, title, description, dueDate, priority, projectId, isComplete = false) => {
 
     return { id, title, description, dueDate, priority, projectId, isComplete };
+}
+
+const createNewList = (info) => {
+    console.log('createNewList info:', info)
+    const [title, description, dueDate, priority, projectId] = info;
+    //const project = getProjectById(projectId);
+    //console.log('project: ', project);
+    const projectLists = getProjectLists(projectId);
+    //console.log('projectLists: ', projectLists);
+    let newListId;
+    if (projectLists) {
+        newListId = projectLists.length;
+    } else{
+        newListId = 0;
+    }
+    //console.log('length', newListId);
+    const newList = ToDoList(newListId, title, description, dueDate, priority, projectId, false);
+    console.log('newList: ', newList);
+    setStorage('allLists', newList);
 }
 
 const toggleComplete = (isComplete) => {
@@ -29,15 +49,17 @@ const getNewListInfo = (e) => {
 
     const info = [title, description, dueDate, priority, projectId];
 
-    addListToProject(info);
+    createNewList(info);
     onlyDisplayOneProject(projectId);
 
     const popup = document.querySelector('.popUp');
     popup.remove();
-    //
-    //
-    // Send to project to see new list?
-    // Have to fix list display - make a div or card
 }
 
-export { ToDoList, toggleComplete, openListModal, getNewListInfo }
+const getAllLists = () => {
+    const storedLists = getStorage('allLists');
+
+    return storedLists;
+}
+
+export { ToDoList, toggleComplete, openListModal, getNewListInfo, getAllLists, createNewList }

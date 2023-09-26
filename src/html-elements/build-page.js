@@ -1,7 +1,6 @@
 import { Sidebar } from "./sidebar-section";
 import { Main } from "./main-section";
-import { buildProject, buildAllProjects } from "./project-section";
-import { getAllProjects } from "../project";
+import { buildAllProjects } from "./project-section";
 
 const buildElement = (type, args) => {
   const element = document.createElement(type);
@@ -15,6 +14,7 @@ const buildElement = (type, args) => {
 
 const buildPage = () => {
   const container = document.getElementById('container');
+  container.innerHTML = "";
   container.append(Sidebar());
   container.append(Main());
 

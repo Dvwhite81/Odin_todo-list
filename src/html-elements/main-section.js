@@ -1,6 +1,7 @@
 import { buildElement } from "./build-page";
 import { openListModal } from "../todo-list";
 import { buildAllProjects } from "./project-section";
+import { openProjectModal } from "../project";
 
 const buildMain = () => {
   const main = buildElement("div", {id: "main"});
@@ -10,6 +11,7 @@ const buildMain = () => {
 
 const newProjectBtn = () => {
   const btn = buildElement("button", {id: "new-project-btn", textContent: "New Project"});
+  btn.addEventListener('click', openProjectModal);
 
   return btn;
 };
