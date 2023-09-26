@@ -1,30 +1,35 @@
 import { buildElement } from "./build-page";
 import { openListModal } from "../todo-list";
-import { buildAllProjects } from "./project-section";
 import { openProjectModal } from "../project";
 
 const buildMain = () => {
-  const main = buildElement("div", {id: "main"});
+  const main = buildElement("div", { id: "main" });
 
   return main;
 };
 
 const newProjectBtn = () => {
-  const btn = buildElement("button", {id: "new-project-btn", textContent: "New Project"});
-  btn.addEventListener('click', openProjectModal);
+  const btn = buildElement("button", {
+    id: "new-project-btn",
+    textContent: "New Project",
+  });
+  btn.addEventListener("click", openProjectModal);
 
   return btn;
 };
 
 const newListBtn = () => {
-  const btn = buildElement("button", {id: "new-list-btn", textContent: "New List"});
-  btn.addEventListener('click', openListModal);
+  const btn = buildElement("button", {
+    id: "new-list-btn",
+    textContent: "New List",
+  });
+  btn.addEventListener("click", openListModal);
 
   return btn;
 };
 
 const buildBtnDiv = () => {
-  const div = buildElement("div", {id: "main-btn-div"});
+  const div = buildElement("div", { id: "main-btn-div" });
 
   const btn1 = newProjectBtn();
   const btn2 = newListBtn();
@@ -34,10 +39,10 @@ const buildBtnDiv = () => {
 };
 
 const buildProjectContainer = () => {
-  const container = buildElement('div', {id: "projects-container"});
+  const container = buildElement("div", { id: "projects-container" });
 
   return container;
-}
+};
 
 const Main = () => {
   const section = buildMain();

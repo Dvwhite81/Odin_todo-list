@@ -52,7 +52,7 @@ body {
 
 .side-list-item {
   list-style: none;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .side-link {
@@ -90,17 +90,17 @@ body {
   background-color: #fefefe;
   padding: 20px;
   border: 1px solid #888;
-  }
-
-  form h3 {
-    text-decoration: underline;
-    text-underline-offset: 3px;
 }
 
-  #list-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+form h3 {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#list-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .bold {

@@ -1,16 +1,31 @@
+import { intervalToDuration, parseISO, formatDuration } from "date-fns";
 import { buildElement } from "./build-page";
 
 const buildList = (list) => {
-    const section = buildElement('div', {classList: 'list-section'});
-    section.setAttribute('list-id', list.id)
-    const title = buildElement('h3', {textContent: `Task: ${list.title}`});
-    const description = buildElement('p', {textContent: `Details: ${list.description}`});
-    const dueDate = buildElement('p', {textContent: `Deadline: ${list.dueDate}`});
-    section.append(title, description, dueDate);
+  const section = buildElement("div", { classList: "list-section" });
+  section.setAttribute("list-id", list.id);
+  const title = buildElement("h3", {
+    classList: "list-title",
+    textContent: `Task: ${list.title}`,
+  });
+  const description = buildElement("p", {
+    classList: "list-description",
+    textContent: `Details: ${list.description}`,
+  });
+  let timeLeft = intervalToDuration({
+    start: new Date(),
+    end: parseISO(list.dueDate),
+  });
 
-    return section;
-}
+  const dueDate = buildElement("p", {
+    classList: "list-duedate",
+    textContent: `Time left: ${formatDuration(timeLeft, {
+      delimiter: ", ",
+    })}`,
+  });
+  section.append(title, description, dueDate);
 
-export {
-    buildList
-}
+  return section;
+};
+
+export { buildList };

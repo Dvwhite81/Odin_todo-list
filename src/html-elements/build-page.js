@@ -10,10 +10,10 @@ const buildElement = (type, args) => {
   }
 
   return element;
-}
+};
 
 const buildPage = () => {
-  const container = document.getElementById('container');
+  const container = document.getElementById("container");
   container.innerHTML = "";
   container.append(Sidebar());
   container.append(Main());
