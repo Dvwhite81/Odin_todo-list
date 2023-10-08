@@ -12,20 +12,25 @@ const buildSideLogo = () => {
   const a = buildElement("a", { id: "side-logo-link" });
   const logo = buildElement("img", {
     id: "side-logo",
-    src: "./images/todo-logo.png",
+    src: "/src/images/todo-logo.png",
   });
   logo.addEventListener(
     "mouseover",
-    (event) => (event.target.src = "./images/todo-logo-hover.png")
+    (event) => (event.target.src = "/src/images/todo-logo-hover.png")
   );
   logo.addEventListener(
     "mouseout",
-    (event) => (event.target.src = "./images/todo-logo.png")
+    (event) => (event.target.src = "/src/images/todo-logo.png")
   );
 
   a.append(logo);
   a.addEventListener("click", buildPage);
   return a;
+};
+
+const sideLogoHover = () => {
+  const logo = document.getElementById("side-logo");
+  logo.src = "/src/images/todo-logo-hover.png";
 };
 
 const buildSideTitle = () => {
