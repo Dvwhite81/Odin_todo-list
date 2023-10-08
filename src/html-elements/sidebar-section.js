@@ -11,17 +11,8 @@ const buildSidebar = () => {
 const buildSideLogo = () => {
   const a = buildElement("a", { id: "side-logo-link" });
   const logo = buildElement("img", {
-    id: "side-logo",
-    src: "/dist/images/todo-logo.png",
+    id: "side-logo"
   });
-  logo.addEventListener(
-    "mouseover",
-    (event) => (event.target.src = "/dist/images/todo-logo-hover.png")
-  );
-  logo.addEventListener(
-    "mouseout",
-    (event) => (event.target.src = "/dist/images/todo-logo.png")
-  );
 
   a.append(logo);
   a.addEventListener("click", buildPage);
