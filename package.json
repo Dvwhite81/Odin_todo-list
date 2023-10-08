@@ -2,7 +2,7 @@
   "name": "odin_todo-list",
   "version": "1.0.0",
   "repository": {
-    "url": "git+https://github.com/Dvwhite81/Odin_todo-list/.git"
+    "url": "git+https://github.com/Dvwhite81/Odin_todo-list/dist.git"
   },
   "description": "",
   "main": "index.js",
