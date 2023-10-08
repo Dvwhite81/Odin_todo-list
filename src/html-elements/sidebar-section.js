@@ -1,6 +1,8 @@
 import { buildElement, buildPage } from "./build-page";
 import { getAllProjects } from "../project";
 import { onlyDisplayOneProject } from "./project-section";
+import image from '../images/todo-logo.png';
+import hoverImage from '../images/todo-logo-hover.png';
 
 const buildSidebar = () => {
   const sidebar = buildElement("div", { id: "sidebar" });
@@ -12,15 +14,15 @@ const buildSideLogo = () => {
   const a = buildElement("a", { id: "side-logo-link" });
   const logo = buildElement("img", {
     id: "side-logo",
-    src: "/src/images/todo-logo.png",
+    src: image,
   });
   logo.addEventListener(
     "mouseover",
-    (event) => (event.target.src = "/src/images/todo-logo-hover.png")
+    (event) => (event.target.src = hoverImage)
   );
   logo.addEventListener(
     "mouseout",
-    (event) => (event.target.src = "/src/images/todo-logo.png")
+    (event) => (event.target.src = image)
   );
 
   a.append(logo);
