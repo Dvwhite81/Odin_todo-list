@@ -16,21 +16,16 @@ const buildSideLogo = () => {
   });
   logo.addEventListener(
     "mouseover",
-    (event) => (event.target.src = "/src/images/todo-logo-hover.png")
+    (event) => (event.target.src = "/dist/images/todo-logo.png")
   );
   logo.addEventListener(
     "mouseout",
-    (event) => (event.target.src = "/src/images/todo-logo.png")
+    (event) => (event.target.src = "/dist/images/todo-logo.png")
   );
 
   a.append(logo);
   a.addEventListener("click", buildPage);
   return a;
-};
-
-const sideLogoHover = () => {
-  const logo = document.getElementById("side-logo");
-  logo.src = "/src/images/todo-logo-hover.png";
 };
 
 const buildSideTitle = () => {
