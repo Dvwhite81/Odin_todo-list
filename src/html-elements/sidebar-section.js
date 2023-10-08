@@ -13,26 +13,11 @@ const buildSidebar = () => {
 const buildSideLogo = () => {
   const a = buildElement("a", { id: "side-logo-link" });
   const logo = buildElement("img", {
-    id: "side-logo",
-    src: image,
+    id: "side-logo"
   });
-  logo.addEventListener(
-    "mouseover",
-    (event) => (event.target.src = hoverImage)
-  );
-  logo.addEventListener(
-    "mouseout",
-    (event) => (event.target.src = image)
-  );
-
   a.append(logo);
   a.addEventListener("click", buildPage);
   return a;
-};
-
-const sideLogoHover = () => {
-  const logo = document.getElementById("side-logo");
-  logo.src = "/src/images/todo-logo-hover.png";
 };
 
 const buildSideTitle = () => {
