@@ -12,11 +12,11 @@ const buildSideLogo = () => {
   const a = buildElement("a", { id: "side-logo-link" });
   const logo = buildElement("img", {
     id: "side-logo",
-    src: "/src/images/todo-logo.png",
+    src: "/dist/images/todo-logo.png",
   });
   logo.addEventListener(
     "mouseover",
-    (event) => (event.target.src = "/dist/images/todo-logo.png")
+    (event) => (event.target.src = "/dist/images/todo-logo-hover.png")
   );
   logo.addEventListener(
     "mouseout",
